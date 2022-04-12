@@ -9,17 +9,13 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero shadow--lw', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/tutorial-examples/battleship">
-            ZK Battleship Game Tutorial
-          </Link>
-        </div>
+        <h1 className="blurb">
+          The General Purpose Zero-Knowledge VM.<br />
+          Prove any Computation. <br />
+          Verify Instantly.
+        </h1>
       </div>
     </header>
   );
@@ -31,6 +27,8 @@ export default function Home() {
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
+      <img className={styles.large} style={{width : '100%'}} src={require('@site/static/img/banner.png').default} alt="Risc0 Logo"/>
+      <img className={styles.small} style={{width : '100%'}} src={require('@site/static/img/banner-small.png').default} alt="Risc0 Logo"/>
       <HomepageHeader />
       <main>
         <HomepageFeatures />

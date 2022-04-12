@@ -60,21 +60,21 @@ const config = {
         defaultMode: 'dark',
       },
       navbar: {
-        title: 'Home',
+        title: 'RISC Zero',
         logo: {
           alt: 'Risc0 Logo',
           src: 'img/logo.png',
         },
         items: [
+          {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/risc0/risc0',
             label: 'GitHub',
             position: 'right',
           },
