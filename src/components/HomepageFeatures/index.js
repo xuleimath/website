@@ -30,7 +30,7 @@ const FeatureList = [
       <>
         The RISC Zero ZKVM is a verifiable computer that works like a real
         embedded RISC-V microprocessor, enabling programmers to write ZK proofs
-        like they right any other code.
+        like they write any other code.
       </>
     ),
   },
