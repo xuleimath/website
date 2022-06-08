@@ -108,6 +108,11 @@ const config = {
             label: 'Terminology',
           },
           {
+            href: 'https://risczero.rippling-ats.com',
+            position: 'left',
+            label: 'Careers',
+          },
+          {
             href: 'https://github.com/Risc0',
             label: 'GitHub',
             position: 'right',
