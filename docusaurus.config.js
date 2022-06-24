@@ -74,12 +74,6 @@ const config = {
               {label: 'Meet the Team',
               to: '/team'
               },
-              {label: 'About the zkVM',
-              to: 'docs/explainers/zkvm/what_is_risc_zero'
-              },
-              {label: 'About the Proof System',
-              to: 'docs/explainers/proof-system/what_is_a_receipt'
-              }
             ]
           },
           {
@@ -100,6 +94,11 @@ const config = {
               to: 'http://www.github.com/risc0/risc0'
               }
             ]
+          },
+          {
+            position: 'left',
+            label: 'Tech',
+            to: 'docs/technology',
           },
           {
             type: 'doc',
