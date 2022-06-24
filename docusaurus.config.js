@@ -17,7 +17,6 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'risc0', // Usually your GitHub org/user name.
   projectName: 'website2', // Usually your repo name.
-
   presets: [
     [
       'classic',
