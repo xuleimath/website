@@ -15,7 +15,7 @@ export default class PageLayout extends React.Component {
   render() {
     return (
       <div id="some-content">
-        <script src="https://boards.greenhouse.io/embed/job_board/js?for=risczero"></script>
+        <Script src="https://boards.greenhouse.io/embed/job_board/js?for=risczero"></Script>
       </div>)
     }
 }
