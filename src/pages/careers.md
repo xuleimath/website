@@ -10,7 +10,7 @@ title: Careers
 <div id="grnhse_app"></div>
 <script>
 function loadScript( url, callback ) {
-  var script = document.createElement( "script" )
+  var script = document.createElement( "script" );
   script.type = "text/javascript";
   if(script.readyState) {  // only required for IE <9
     script.onreadystatechange = function() {
