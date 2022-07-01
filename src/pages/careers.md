@@ -10,7 +10,13 @@ title: Careers
 <div id="grnhse_app"></div>
 <script src="https://boards.greenhouse.io/embed/job_board/js?for=risczero"></script>
 <script>
-window.onload = function(){
-  Grnhse.Iframe.load()
-};
+for (var i = 1; i <= 5; ++i){
+  setTimeout(function() { 
+      try {
+        Grnhse.Iframe.load();
+      }
+      catch(err) {}
+   }, 
+   1000*i);
+}
 </script>
