@@ -14,11 +14,6 @@ try {
   Grnhse.Iframe.load() 
 } 
 catch {
-  try { 
-    Grnhse.Iframe.load() 
-  } 
-  catch {
     Grnhse.Iframe.load()
-  }
 }
 </script>
