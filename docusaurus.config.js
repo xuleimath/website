@@ -106,7 +106,7 @@ const config = {
             label: 'Terminology',
           },
           {
-            href: 'https://boards.greenhouse.io/risczero',
+            to: '/careers',
             position: 'left',
             label: 'Careers',
           },
