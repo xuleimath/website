@@ -8,9 +8,4 @@ title: Careers
 
 # Careers
 <div id="grnhse_app"></div>
-<script onload="loadedContent();" src="https://boards.greenhouse.io/embed/job_board/js?for=risczero" async></script>
-<script>
-fn loadedContent() {
-  Grnhse.Iframe.load();
-}
-</script>
+<script onload="Grnhse.Iframe.load();" src="https://boards.greenhouse.io/embed/job_board/js?for=risczero"></script>
