@@ -62,7 +62,7 @@ The table above shows the python code and associated input/output arrays; the in
 
 > Evaluating the `trace polynomial` on the larger set $\mathcal{D}(5^{3})$ gives a Reed-Solomon encoded `trace block`. 
 
-We say the `block` is a `degree 4 expansion` of the `column`, and that the Reed-Solomon encoding has `rate` $\frac{1}{4}$. Reed-Solmon encoding improves the soundness of the protocol by amplifying any errors in an invalid trace. 
+We say the `block` is a `degree 4 expansion` of the `column`, and that the Reed-Solomon encoding has `rate` $\frac{1}{4}$. [Reed-Solmon encoding](../../reference-docs/about-rs-codes.md) improves the soundness of the protocol by amplifying any errors in an invalid trace. 
 
 
 ![Lesson 4c: Evaluating Trace Polynomials](assets/fibonacci-04c.png)		
