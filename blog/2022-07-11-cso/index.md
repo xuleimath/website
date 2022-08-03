@@ -1,5 +1,5 @@
 ---
-slug: starter
+slug: ash
 title: CSO Role Announcement
 authors: [ash]
 tags: [cso, zk]
