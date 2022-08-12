@@ -127,7 +127,7 @@ The Prover evaluates V(x) over the $5, 5^4, \ldots, 5^{94}$, commits the values 
 
 >(ii) The degree of the `validity polynomial` and each `trace polynomials` are less than or equal to 7.	
 
->The FRI protocol is the technique we use for proving (ii). Those details are omitted from this simplified example. 								
+>The [FRI protocol](../../reference-docs/about-fri.md) is the technique we use for proving (ii). Those details are omitted from this simplified example. 								
 
 >In the original STARK protocol, the Verifier tests (i) at a number of test points; the soundness of the protocol depends on the number of tests. The DEEP-ALI technique allows us to achieve a high degree of soundness with a single test. The details of DEEP are described in the following lesson.	
 										
@@ -171,7 +171,7 @@ $V'(x)  = \frac{V(x) - V(93)}{x - 93}$ where the Prover computes V(93) by runnin
 
 After using the `DEEP polynomials` to check the relation between the Trace Polynomial, the `validity polynomial`, and the `zeros polynomial` at $z=93$, the only thing left for the Prover to do is to show that the `DEEP polynomials` are low-degree. 	
 
-The FRI protocol provides a mechanism for the Verifier to confirm the low-degree-ness of polynomials, with very little computation required of the Verifier. In order to reduce this assertion of low-degree-ness to a single application of FRI, the Prover mixes the `DEEP polynomials` into a single FRI polynomial, using the DEEP Mixing parameter, $\alpha_2$.					
+The [FRI protocol](../../reference-docs/about-fri.md) provides a mechanism for the Verifier to confirm the low-degree-ness of polynomials, with very little computation required of the Verifier. In order to reduce this assertion of low-degree-ness to a single application of FRI, the Prover mixes the `DEEP polynomials` into a single FRI polynomial, using the DEEP Mixing parameter, $\alpha_2$.					
 
 Letting $c'_1, c'_2, c'_3, d'_1, d'_2, d'_3$, and $V'$ denote the `DEEP polynomials`, we mix the `DEEP polynomials` to construct the FRI polynomial, $f_0(x) = \alpha_2 ^0c'_1(x) + \alpha_2 ^1 c'_2(x) + ... + \alpha_2 ^6V'(x)$		
 

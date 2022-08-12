@@ -29,7 +29,7 @@ sequenceDiagram
     Verifier->>Prover: Verifier returns a DEEP mixing parameter
     Note over Prover: Prover uses DEEP Mixing Parameter to mix <br/> the DEEP polynomials, forming the FRI polynomial. 
     Prover->>Verifier: Prover sends Merkle Root <br/> for the FRI polynomial
-    Note over Prover,Verifier: Phase 4: The FRI Protocol. <br/>We omit the details of the FRI Protocol for brevity.
+    Note over Prover,Verifier: Phase 4: The FRI Protocol. <br/>We omit the details of the [FRI Protocol](../../reference-docs/about-fri.md) for brevity.
   
 ```
 ## The RISC Zero Proof System: A Step-By-Step Description
@@ -73,6 +73,6 @@ sequenceDiagram
   - Denoting the `taps` of $P_i$ at $z$ as $(x_1,P_i(x_1)),\ldots,(x_n,P_i(x_n))$, the Prover constructs the DEEP polynomial $P'_i(x)=\frac{P_i(x)-\overline{P_i}(x)}{(x-x_1)\ldots(x-x_n)}$ where $\overline{P_i}(x)$ is the polynomial formed by interpolating the taps of $P_i$. The Prover computes $P'_i$, runs an iNTT on the result, and sends the coefficients of $P'_i$ to the Verifier. Using this technique, the Prover constructs and sends a DEEP polynomial for each $P_i$ and each $v_i$. 
 - At this point, the claim of trace validity has been reduced to the claim that each of the DEEP polynomials is actually a low-degree polynomial. To conclude the proof, the Prover mixes the DEEP polynomials into the `FRI Polynomial` using a `DEEP mixing parameter` and use the FRI protocol to show that the `FRI Polynomial` is a low-degree polynomial. 
 ### Phase 4: The FRI Protocol
-- We omit the details of the FRI Protocol for brevity. 
+- We omit the details of the [FRI Protocol](../../reference-docs/about-fri.md) for brevity. 
 
 Thanks for reading! If you have questions or feedback, we'd love to hear from you on Discord or Twitter.

@@ -18,3 +18,4 @@ In the context of RISC Zero's receipts, the relevance of Reed-Solomon codes is q
   - [Reed-Solomon Lesson](https://www.youtube.com/watch?v=yQkEnde2lNg&list=PLkvhuSoxwjI_UudECvFYArvG0cLbFlzSr&index=16)
 -  The [Reed-Solomon paper](https://faculty.math.illinois.edu/~duursma/CT/RS-1960.pdf) is quite clear and only a few pages long.
 -  The [Proximity Gaps for Reed-Solomon Codes](https://eprint.iacr.org/2020/654.pdf) paper is central to the soundness of the RISC Zero proof system. 
+   - See also [Dan Carmon's talk](https://www.youtube.com/watch?v=v0ZHUPzKotY) at the IEEE Symposium on the Foundations of Computer Science
