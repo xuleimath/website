@@ -27,7 +27,7 @@ In order to achieve this objective, we rely on:
 >- `Consistent and Accessible Terminology`: We are diligent about using our official terminology as defined and using precise language as much as possible. At the same time, we minimize our use of technical jargon, taking care to provide reference pages to pre-requisite knowledge as appropriate. 
 
 ## Terminology Conventions
-[`RISC Zero Official Terminology`](key-terminology.md)
+[`RISC Zero Official Terminology`](./terminology)
 
 Our terminology and naming conventions are subject to ongoing evaluation, and we encourage conversation and questions on these topics. Please let us know via a [`GitHub issue`](https://github.com/risc0/website/issues) when you encounter terms that don't seem quite right. 
 

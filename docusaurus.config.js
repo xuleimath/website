@@ -66,30 +66,19 @@ const config = {
         },
         items: [
           {
-            type: 'dropdown',
-            position: 'left',
-            label: 'About',
-            items: [
-              {label: 'Meet the Team',
-              to: '/team'
-              },
-            ]
-          },
-          {
             position: 'left',
             label: 'Getting Started',
-            to: 'docs/getting-started',
+            to: 'docs/build',
           },
           {
             position: 'left',
-            label: 'Tech',
+            label: 'Technology',
             to: 'docs/technology',
           },
           {
-            type: 'doc',
-            docId: 'key-terminology',
+            label: 'Blog',
             position: 'left',
-            label: 'Terminology',
+            to: '/blog'
           },
           {
             href: 'https://boards.greenhouse.io/risczero',
@@ -101,31 +90,16 @@ const config = {
             position: 'right',
             label: 'GitHub',
           },
-        ],
-      },
-      footer: {
-        style: 'dark',
-        links: [
           {
-            title: 'Stay Informed',
-            items: [
-              {
-                label: 'Mailing List',
-                to: 'mailing',
-              },
-              {
-                label: 'Blog',
-                to: '/blog'
-              }
-            ],
+            label: 'Mailing List',
+            position: 'right',
+            to: 'mailing',
           },
           {
-            title: 'Community',
+            type: 'dropdown',
+            position: 'right',
+            label: 'Community',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/risczero',
-              },
               {
                 label: 'Discord',
                 href: 'https://discord.gg/risczero',
@@ -134,20 +108,24 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/risczero',
               },
-            ],
-          },
-          {
-            title: 'Contribute',
-            items: [
               {
-                label: 'Codebase',
-                to: 'https://github.com/risc0/',
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/risczero',
               },
               {
-                label: 'Website',
+                label: 'Contributor\'s Guide',
                 to: 'docs/contributors-guide',
               },
-            ],
+            ]
+          },
+          
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+          
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Risc0, Inc. Built with Docusaurus.`,

@@ -1,6 +1,10 @@
+---
+slug: /build
+displayed_sidebar: GettingStartedSidebar
+---
 # Getting Started
 
-To get started working with RISC Zero projects, take a look at these GitHub repositories:
+To get started building with RISC Zero, take a look at these GitHub repositories:
 
 * [**Hello World in Rust**](https://github.com/risc0/risc0-rust-starter) - Our starter project for the RISC Zero zkVM. If you're just getting started writing code for the zkVM, we recommend reading (and playing with) this repository.
 

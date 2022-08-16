@@ -75,7 +75,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 If you run into any problems, feel free to ask on [Discord](https://discord.gg/risczero) and check [GitHub Issues](https://github.com/risc0/risc0/issues).
 
 ## A Trustless, Decentralized Battleship
-Let's peek under the hood at how we use the RISC Zero Virtual Machine (zkVM) to offer a trustless implementation of Battleship. For definitions of key terms, see our [Key Terminology](../../key-terminology.md) page. 
+Let's peek under the hood at how we use the RISC Zero Virtual Machine (zkVM) to offer a trustless implementation of Battleship. For definitions of key terms, see our [Key Terminology](/docs/terminology) page. 
 
 ### The RISC Zero zkVM
 ```mermaid

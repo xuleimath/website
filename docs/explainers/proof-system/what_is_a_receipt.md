@@ -1,10 +1,11 @@
 ---
 sidebar_position: 1
+slug: ./
 ---
 
 # What is a Computational Receipt?
 
-When a [method](../../key-terminology.md) executes inside the RISC Zero [zkVM](../zkvm/what_is_risc_zero.md), the zkVM produces a **computational receipt** along with the output. 
+When a [method](../../terminology) executes inside the RISC Zero [zkVM](../zkvm/what_is_risc_zero.md), the zkVM produces a **computational receipt** along with the output. 
 
 The receipt serves as a cryptographic authentication that the given method was executed faithfully. In particular, the receipt includes a **MethodID**, which serves as an identifier for a particular computational method and a **seal** which indicates that the associated execution trace satisfies the rules of the RISC-V ISA. 
 
