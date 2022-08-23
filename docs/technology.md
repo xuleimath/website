@@ -10,4 +10,6 @@ The RISC Zero zkVM is an `open-source, zero-knowledge virtual machine` that lets
 
 - [**Proof System Explainers**](explainers/proof-system/what_is_a_receipt.md) - These materials introduce the zero-knowledge proof system that makes it possible to build `trustless, verifiable software`. 
 
-- [**Background/Reference Materials**](reference-docs/about-starks.md) - This section includes a variety of reference materials. 
+- [**Background/Reference Materials**](reference-docs/about-starks.md) - This section includes a variety of reference materials.
+
+- [**zkVM FAQ**](faq.md) - This FAQ provides answers to commonly asked questions about the zkVM.
