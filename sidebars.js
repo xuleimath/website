@@ -15,7 +15,7 @@ module.exports = {
     },
     { type: 'link',
       label: 'RISC Zero Battleship',
-      href: 'https://github.com/risc0/risc0-battleship-example',
+      href: 'https://github.com/risc0/battleship-example',
     },
     { type: 'link',
       label: 'RISC Zero Rust Crates',
