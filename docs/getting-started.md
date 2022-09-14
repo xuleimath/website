@@ -13,10 +13,10 @@ To get started building with RISC Zero, take a look at these examples, which fea
 
 * [**RISC Zero Digital Signatures**](examples/digital-signature) - In this example, you'll see how to verifiably sign code run inside the RISC Zero zkVM. This example features a post-quantum digital signature generated using only SHA-2 as a cryptographic primitive.
 
-* [**RISC Zero Password Checker**](https://github.com/risc0/risc0-rust-examples/password-checker) - To learn about how the RISC Zero zkVM can be used to help Bob trust Alice's password choice, take a look at our password checker example.
+* [**RISC Zero Password Checker**](examples/password-checker) - To learn about how the RISC Zero zkVM can be used to help Bob trust Alice's password choice, take a look at our password checker example.
 
 # Open Source Repositories
 
-* [**Rust crates**](https://github.com/risc0/risc0#rust-crates) - If you're a Rust user, you'll find RISC Zero crates here, ready to be included in your existing projects.
+* [**Rust Crates**](https://github.com/risc0/risc0#rust-crates) - If you're a Rust user, you'll find RISC Zero crates here, ready to be included in your existing projects.
 
 * [**Contribute to RISC Zero**](http://www.github.com/risc0/risc0) - If you're interested in how RISC Zero projects for the zkVM work, or curious about contributing to this project, come take a look at our main project repository.
