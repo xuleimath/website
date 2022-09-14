@@ -11,7 +11,7 @@ To get started building with RISC Zero, take a look at these examples, which fea
 
 * [**RISC Zero Battleship**](examples/battleship_rust_explainer.md) - To see a more complex use of the RISC Zero zkVM in action, take a look at this working Battleship game. Here, players use private game board states to track whether opponents have sunk their battleships.
 
-* [**RISC Zero Digital Signatures**](examples/digital-signature.md) - In this example, you'll see how to verifiably sign code run inside the RISC Zero zkVM. This example features a post-quantum digital signature generated using only SHA-2 as a cryptographic primitive.
+* [**RISC Zero Digital Signatures**](examples/digital_signatures.md) - In this example, you'll see how to verifiably sign code run inside the RISC Zero zkVM. This example features a post-quantum digital signature generated using only SHA-2 as a cryptographic primitive.
 
 # Open Source Repositories
 
