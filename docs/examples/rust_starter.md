@@ -1,11 +1,9 @@
 ---
 slug: starter
 title: Understanding the Rust starter project
-authors: [elakn]
-tags: [zk, zkvm, rust]
 ---
 
-In this post, we introduce a simple Rust code project written for the RISC Zero zero-knowledge virtual machine (zkVM). In this post, we won't show you how to write a full program, but reading this should help you get acquainted with writing code for the zkVM. Although code has been omitted for simplicity, we strongly recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
+Welcome to the RISC Zero zero-knowledge virtual machine (zkVM)! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs.Reading this document should help you get acquainted with writing code for the zkVM. Although code has been omitted for simplicity, we strongly recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
 
 By reading this post, you should learn, at a high level:
 * How RISC Zero can be used to convince someone that code has executed on the zkVM
@@ -43,7 +41,7 @@ A hash of the journal is included in the cryptographic seal so that the recipien
 
 The diagram below shows these components in action:
 
-![](fig1.png)
+![](assets/fig1.png)
 <!--
 ```mermaid
 flowchart LR
@@ -74,7 +72,7 @@ For more details on this process, see our [zkVM Overview](https://www.risczero.c
 
 The process diagram below shows the execution steps relevant to host and guest interactions. To illustrate the responsibility of the `prover`, we have included it as a separate entity. In practice, this object is instantiated on the host and lives in host memory.
 
-![](fig2.png)
+![](assets/fig2.png)
 <!--
 ```mermaid
 sequenceDiagram
