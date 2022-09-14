@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+slug: digital-signature
 ---
 
 # Digital Signatures on RISC Zero
 
 *Revised Apr 30, 2022*
 
-*In this document, we introduce a* **post-quantum digital signature,** *using Rust and* [RISC Zero's zkVM](zkvm_overview.md). *To learn more and run it on your own machine, check out the* [Github README](https://github.com/risc0/risc0-rust-examples/tree/main/digital-signature).
+*In this document, we introduce a* **post-quantum digital signature,** *using Rust and* [RISC Zero's zkVM](../explainers/zkvm/zkvm_overview.md). *To learn more and run it on your own machine, check out the* [Github README](https://github.com/risc0/risc0-rust-examples/tree/main/digital-signature).
 > WARNING: This software is still experimental, we do not recommend it for production use.
 
 ## A Post Quantum Digital Signature
