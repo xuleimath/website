@@ -40,7 +40,7 @@ module.exports = {
       ]
     },
     { type: 'category',
-      label: 'RISC Zero Password Validation',
+      label: 'RISC Zero Password Validity Checker',
       items: [
         {
           type: 'doc',
