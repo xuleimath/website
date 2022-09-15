@@ -1,4 +1,5 @@
 ---
+slug: /explainers
 displayed_sidebar: TechnologySidebar
 ---
 

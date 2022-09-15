@@ -1,5 +1,5 @@
 ---
-slug: /build
+slug: /
 displayed_sidebar: GettingStartedSidebar
 ---
 # Getting Started

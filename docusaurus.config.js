@@ -68,12 +68,12 @@ const config = {
           {
             position: 'left',
             label: 'Getting Started',
-            to: 'docs/build',
+            to: 'docs',
           },
           {
             position: 'left',
             label: 'Technology',
-            to: 'docs/technology',
+            to: 'docs/explainers',
           },
           {
             label: 'Blog',
