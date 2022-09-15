@@ -9,21 +9,60 @@ module.exports = {
   },
 
   GettingStartedSidebar: [
-    { type: 'link',
+    { type: 'category',
       label: 'Hello World in Rust',
-      href: 'https://github.com/risc0/risc0-rust-starter',
+      items: [
+        {
+          type: 'doc',
+          label: 'Rust Starter Explainer',
+          id: 'examples/rust_starter',
+        },
+        {
+          type: 'link',
+          label: 'Rust Starter Source',
+          href: 'https://github.com/risc0/risc0-rust-starter',
+        },
+      ]
     },
-    { type: 'link',
+    { type: 'category',
       label: 'RISC Zero Battleship',
-      href: 'https://github.com/risc0/battleship-example',
+      items: [
+        {
+          type: 'doc',
+          label: 'Battleship Explainer',
+          id: 'examples/battleship_rust_explainer',
+        },
+        {
+          type: 'link',
+          label: 'Battleship Source',
+          href: 'https://github.com/risc0/battleship-example',
+        }
+      ]
     },
-    { type: 'link',
+    { type: 'category',
+      label: 'RISC Zero Digital Signatures',
+      items: [
+        {
+          type: 'doc',
+          label: 'Digital Signatures Explainer',
+          id: 'examples/digital_signatures_explainer',
+        },
+        {
+          type: 'link',
+          label: 'Digital Signatures Source',
+          href: 'https://github.com/risc0/risc0-rust-examples/tree/main/digital-signature',
+        }
+      ]
+    },
+    { 
+      type: 'link',
       label: 'RISC Zero Rust Crates',
       href: 'https://github.com/risc0/risc0#rust-crates',
     },
     { type: 'link',
       label: 'Contribute to RISC Zero',
       href: 'https://github.com/risc0/risc0',
-    } 
-  ],
+    }, 
+
+  ]
 };
