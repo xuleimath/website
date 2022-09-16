@@ -14,8 +14,13 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          label: 'Rust Starter Explainer',
-          id: 'examples/rust_starter',
+          label: 'Rust Starter Tutorial',
+          id: 'examples/rust_starter_tutorial',
+        },
+        {
+          type: 'doc',
+          label: 'Rust Starter Under the Hood',
+          id: 'examples/rust_starter_under_the_hood',
         },
         {
           type: 'link',
