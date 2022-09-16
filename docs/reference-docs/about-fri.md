@@ -24,6 +24,7 @@ Shortly after the FRI protocol was released, an alternative protocol called DEEP
 - [Fast Reed Solomon Interactive Oracle Proofs of Proximity (Ben-Sasson et. al, 2017)](https://drops.dagstuhl.de/opus/volltexte/2018/9018/pdf/LIPIcs-ICALP-2018-14.pdf) 
 - [Interactive Proofs of Proximity (Rothblum, Vadhan, and Widgerson, 2013)](https://guyrothblum.files.wordpress.com/2014/11/rvw13.pdf)
 ### Explanatory References
+- [A summary on the FRI low degree test (Ulrich Haböck, Orbis Labs, 2022)](https://eprint.iacr.org/2022/1216.pdf)
 - [Low Degree Testing](https://medium.com/starkware/low-degree-testing-f7614f5172db), part 3 of the STARK Math series
 - [Vitalik's FRI article](https://vitalik.ca/general/2017/11/22/starks_part_2.html)
 - [Anatomy of a STARK, Part 3: FRI](https://aszepieniec.github.io/stark-anatomy/fri)
