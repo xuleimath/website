@@ -13,7 +13,7 @@ To get started building with RISC Zero, take a look at these examples, which fea
 
 * [**RISC Zero Digital Signatures**](examples/digital_signatures.md) - In this example, you'll see how to verifiably sign code run inside the RISC Zero zkVM. This example features a post-quantum digital signature generated using only SHA-2 as a cryptographic primitive.
 
-* [**RISC Zero Password Validity Checker**](examples/password-checker.md) - In this example, you'll see an Alice convince Bob's Identity Service that her password meets Bob's validity requirements. This example makes use of public shared outputs that Alice can write to the RISC Zero zkVM's `receipt journal`.
+* [**RISC Zero Password Validity Checker**](examples/password_checker.md) - In this example, you'll see Alice convince Bob's Identity Service that her password meets Bob's validity requirements. This example makes use of public shared outputs that Alice can write to the RISC Zero zkVM's `journal`.
 
 # Open Source Repositories
 

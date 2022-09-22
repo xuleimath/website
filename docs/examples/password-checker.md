@@ -1,8 +1,8 @@
 ---
 slug: password-checker
-title: Checking Password Validity With the RISC Zero zkVM
 ---
 
+# Checking Password Validity With the RISC Zero zkVM
 
 In this example, we'll discuss the security value of running a program as part of a RISC Zero zkVM project. We recommend pairing this document with the [password validity checker](https://github.com/risc0/password_checker) example in our Rust examples repository. We assume a high-level understanding of RISC Zero zkVM project design; if you'd like to read an example that describes a zkVM project in greater operational detail, we recommend the [Rust starter project](../examples/rust_starter.md).
 
