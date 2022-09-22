@@ -5,10 +5,14 @@ id: tech_faq
 
 -------------------------------
 ## Contents
-* [ZKP System](#zkp-system)
-* [Code Project Help](#code-project-help)
-* [Guest/Host Interactions](#guest--host-interactions)
-* [Data Processing & Performance](#data-processing--performance)
+- [FAQ](#faq)
+  - [Contents](#contents)
+  - [ZKP System](#zkp-system)
+  - [Code Project Help](#code-project-help)
+  - [<br/>](#)
+  - [Guest / Host Interactions](#guest--host-interactions)
+  - [<br/>](#-1)
+  - [Data Processing & Performance](#data-processing--performance)
 
 -------------------------------
 
@@ -47,6 +51,38 @@ What exactly is the method ID and how can we use it to determine if program code
  A: To confirm an execution path is possible given a particular binary, we want to match a record of executed instruction cycles to the instructions loaded into the code columns of our proof system. Because we can't know which program instructions will be read before runtime, we match the observed execution path against a table of Merkle tree roots representing successively larger portions of the code columns, increasing by powers of two up to an upper limit. The method ID is the table of Merkle roots, and it allows us to efficiently match executed program instructions to a loaded binary representing many possible instructions.
 </details>
 <br/>
+<details closed>
+<summary>
+Q:
+I've encountered an error while running my project for the RISC Zero zkVM! It looks like this:
+
+* Error A:
+<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception { what: "Expand failed: at max steps" }', starter/src/main.rs:7:32</code>.
+<br/><br/>
+* Error B:
+<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception { what: "circuit.validCode(codeMerkle.getRoot())" }', starter/src/main.rs:7:32
+</code>.
+
+What is happening and how can I fix it?
+</summary>
+<br/>
+A: Both errors arise when the zkVM runs out of available instruction cycles. Error A arises if your guest zkVM program took more instruction cycles to run than were available. Error B comes about if you've only used <i>slightly</i> more instruction cycles than the zkVM can process; the zkVM has completed program execution, but it ran out of steam during receipt validation.
+<br/><br/>
+In both cases, you can manually increase the number of available instruction cycles by changing the `code_limit` build option. To do this, edit <a href ="https://github.com/risc0/risc0-rust-starter/blob/main/methods/build.rs">methods/build.rs</a> to call <code>embed_methods_with_options</code> rather than <code>embed_methods</code>. We've opted for a <code>no-std</code> build in the snippet below, so use <code>std: true</code> if your guest program relies on standard:
+<br/><br/>
+<code>
+// The default code_limit is 12. Increase this value up to a maximum of 16.
+
+let options_map = HashMap::from([("methods-guest", risc0_build::GuestOptions{ code_limit: 16, features: vec![], std: false })]);
+
+risc0_build::embed_methods_with_options(options_map);
+</code>
+
+
+Be aware that this will slow receipt creation and verification significantly. Although we cannot guarantee that the increased capacity will be sufficient for your program, it will give you 16 (2^4) times more instruction cycles to work with.
+</details>
+<br/>
+
 -------------------------------
 
 ## Code Project Help
