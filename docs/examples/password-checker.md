@@ -10,11 +10,11 @@ We'll take the perspective of Bob's Identity Service, which needs to set up auth
 
 ### Fine Print (Or: Please Don't Use This In Production)
 
-For those looking to implement their own password solutions: we do not present a complete implementation of a password validity checking program, nor is our example one that follows [guidelines recommended by NIST](https://pages.nist.gov/800-63-FAQ/#q-b06), which caution "against the use of composition rules (e.g., requiring lower-case, upper-case, digits, and/or special characters) for memorized secrets". Bob's Identity Service should responsibly further process Alice's resulting SHA256 salted password hash using a KDF such as scrypt before storing it in a database. This example has also not supplied the mechanism by which Alice confirms she is the actor responsible for generating her new password. <b>Our purpose here is simply to illustrate the power of sharing the results of private computations`.</b>
+For those looking to implement their own password solutions: we do not present a complete implementation of a password validity checking program, nor is our example one that follows [guidelines recommended by NIST](https://pages.nist.gov/800-63-FAQ/#q-b06), which caution "against the use of composition rules (e.g., requiring lower-case, upper-case, digits, and/or special characters) for memorized secrets". Bob's Identity Service should responsibly further process Alice's resulting SHA256 salted password hash using a KDF such as scrypt before storing it in a database. This example has also not supplied the mechanism by which Alice confirms she is the actor responsible for generating her new password. <b>Our purpose here is simply to illustrate the power of sharing the results of private computations.</b>
 
 # Overview
 
-In some ways, Alice's process follows convention. Alice generates a `password` that meets Bob's requirements, and Bob stores a `SHA-256 hash of Alice's password` along with a `salt`. Like all RISC Zero projects for the zkVM, the bulk of the password checker program is divided between a [host driver](https://github.com/risc0/password_checker/blob/main/starter/src/main.rs) that runs the zkVM code and a [guest program](https://github.com/risc0/password_checker/blob/main/methods/guest/src/bin/pw_checker.rs) that executes on the zkVM. By taking advantage of the RISC Zero zkVM, Alice can run a password validity check and give Bob only her salt and hashed password. Alice's process is as follows:
+In some ways, Alice's process follows convention. Alice generates a `password` that meets Bob's requirements, and Bob receives a `SHA-256 hash of Alice's password` along with a `salt`. Like all RISC Zero projects for the zkVM, the bulk of the password checker program is divided between a [host driver](https://github.com/risc0/password_checker/blob/main/starter/src/main.rs) that runs the zkVM code and a [guest program](https://github.com/risc0/password_checker/blob/main/methods/guest/src/bin/pw_checker.rs) that executes on the zkVM. By taking advantage of the RISC Zero zkVM, Alice can run a password validity check and her password never needs to leave her local machine.Alice's process is as follows:
 
 * Alice's `host driver program` shares a password and salt with the `guest zkVM` and initiates guest program execution.
 * The `guest zkVM program` checks Alice's password against a set of validity requirements.
@@ -24,9 +24,13 @@ In some ways, Alice's process follows convention. Alice generates a `password` t
 
 # What Information Can A Zero-Knowledge Proof Provide?
 
-The proof receipt provides Bob with two important kinds of information:
+The `method ID` and the the `journal` on the receipt provide Bob assurance that:
+
+    The program Alice executed within the zkVM was actually Bob's Password Checker, and
+    Bob's Password Checker approved Alice's password
+
 * It demonstrates that the guest zkVM program has executed, which tells Bob `his password requirements were met`.
-* It also provides a tamper-proof receipt `journal` for public outputs, the integrity of which tells Bob that <b>the shared outputs are the result of running the password program</b>.
+* It also provides a tamper-proof `journal` for public outputs, the integrity of which tells Bob that <b>the shared outputs are the result of running the password program</b>.
 
 ### Successful Program Execution is Information
 
@@ -34,28 +38,25 @@ Rather than allowing Bob's Identity Service to check her candidate password, Ali
 
 ### Linking Computations to Results
 
-Instead of providing Bob's Identity Service with a plaintext password, Alice sends a zkVM `computational receipt` that discloses the hashed password and chosen hash salt. Without zero-knowledge technology, it is often complicated to trust that results from arbitrary third parties are related to computations they've performed. By verifying the RISC Zero zkVM receipt, Bob knows which guest program Alice has executed, and he knows that Alice's shared password hash is the result of having executed her guest program.
+Instead of providing Bob's Identity Service with a plaintext password, Alice sends a `receipt` that discloses the hashed password and chosen hash salt. Without zero-knowledge technology, it is often complicated to trust that results from arbitrary third parties are related to computations they've performed. By verifying the  `receipt`, Bob knows which guest program Alice has executed, and he knows that Alice's shared password hash is the result of having executed her `guest program`.
 
 # RISC Zero zkVM Mechanics
 
-In this section, we discuss <i>how</i> the RISC Zero zkVM allows Alice to produce a `computational receipt` that convinces Bob she has run the password setup program and shared its results.
+In this section, we discuss <i>how</i> the RISC Zero zkVM allows Alice to produce a `receipt` that convinces Bob she has run the password setup program and shared its results.
 
 ### Constraint Checking and Seal Construction
 
-When the host driver runs a guest program on the RISC Zero zkVM, its operations create an `execution trace`. Portions of the trace are subject to `constraints` that include expected RISC-V instruction set behaviors and an expectation that memory register contents have not been modified out of turn. For more details, see [this explanation of seal construction](../explainers/proof-system/constructing-a-seal.md). Importantly, <b>these constraints are checked in a way that does not disclose the zkVM's operations or contents</b>.
+When the host driver runs a guest program on the RISC Zero zkVM, its operations create an `execution trace`. The trace is subject to `constraints` that include expected RISC-V instruction set behaviors and an expectation that memory register contents have not been modified out of turn. For more details, see [this explanation of seal construction](../explainers/proof-system/constructing-a-seal.md). Importantly, <b>these constraints are checked in a way that does not disclose the zkVM's operations or contents</b>.
 
-* <b>What this means for Bob:</b> Without any insight into zkVM behavior, someone (possibly Alice) might modify how the guest zkVM performed its operations. Bob is confirming that the resulting operations follow certain rules (such as those governing how RISC-V instructions change memory register contents).
+<b>What this means for Bob</b>: The journal on Alice's receipt was generated by executing the code in Bob's password checker in accordance with the rules of RISC-V.
 <br/>
-<br/>
-* <b>What this means for Alice:</b> if checking these expectations was not zero-knowledge, then the proof of computational integrity might help reveal Alice's password. We can think of the entire constraint-checking process as a zero-knowledge mathematical audit of the RISC Zero zkVM's computations, one in which Alice doesn't need to share her virtual machine's states or transitions.
+<b>What this means for Alice</b>: She's able to satisfy Bob's password requirements while maintaining full privacy of her password: Alice's password never left her machine, and the receipt communicates no knowledge about her password (aside from the fact that it satisfies Bob's requirements).
 
 ### Comparing the Program Binary to Executed Instructions
 
 Taken on their own, these constraints on computational integrity don't tell Bob <i>which</i> program instructions have been executed. If we stopped here, Alice might run a modified program that checked her password but substituted an alternate, attacker-chosen password prior to hash generation.
 
-To confirm that the correct program was executed, Bob's receipt validation process also confirms that an execution path is possible given a particular binary. Bob validates the receipt using a `method ID` that identifies the loaded image for his expected program. Checking the receipt against the `method ID` will tell Bob whether Alice ran his program:
-* if Alice executed the binary corresponding to Bob's program, then the loaded instructions her guest zkVM exercised will match some root in the method ID.
-* If Alice's execution path is not possible given the ELF binary for Bob's expected program, then validation will fail.
+Bob's receipt validation process also confirms that the correct program was executed. Bob validates the receipt using a `method ID` associated with the program he expects Alice to run. If Bob's `receipt` is validated, then Alice's program execution matches Bob's password-checking program.
 
 ### Shared Results: the Journal and the Seal
 
