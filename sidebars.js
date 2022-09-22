@@ -30,7 +30,7 @@ module.exports = {
         {
           type: 'doc',
           label: 'Battleship Explainer',
-          id: 'examples/battleship_rust_explainer',
+          id: 'examples/battleship_rust',
         },
         {
           type: 'link',
@@ -60,7 +60,7 @@ module.exports = {
         {
           type: 'doc',
           label: 'Digital Signatures Explainer',
-          id: 'examples/digital_signatures_explainer',
+          id: 'examples/digital_signatures',
         },
         {
           type: 'link',
