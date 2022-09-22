@@ -1,19 +1,17 @@
 ---
 slug: starter
-title: Understanding the Rust starter project
+title: Understanding the RISC Zero Rust Starter Program
 ---
 
-Welcome to the RISC Zero zero-knowledge virtual machine (zkVM)! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs.Reading this document should help you get acquainted with writing code for the zkVM. Although code has been omitted for simplicity, we strongly recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
+the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository. 
 
-By reading this post, you should learn, at a high level:
-* How RISC Zero can be used to convince someone that code has executed on the zkVM
-* How we make programs and variables available to the zkVM guest
-* What zkVM guest programs can do to publicly share computation results
-* How this code example can be adapted to send to a real recipient
+This document will explain the mechanics of a software project for the `RISC Zero zkVM`. If this is your first time looking at a RISC Zero project, we'll help you make sense of the programs it contains and the computational `receipt` that's produced.
+
+A project for the RISC Zero zkVM consists primarily of a `host driver program` that executes a second `guest program` written for the zkVM. The host and guest may exchange data during guest program execution. The guest program may also publicly share the results of its computations. After execution, the RISC Zero zkVM provides a cryptographically strong argument that we performed these computations, which is witnessed by a verifiable `receipt`.
 
 # A program to multiply two numbers in the zkVM
 
-In the Rust starter program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The RISC Zero zkVM provides a cryptographically strong argument that we performed the computation, which is witnessed by a verifiable "receipt." By sharing the receipt, we can convince a skeptical third party that we ran the computation faithfully and that the output is honest.
+In the Rust starter program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The resulting `receipt` may be sent to a third party; it includes the publicly shared product and, by confirming the program used to generate it, demonstrates that the product is composite.
 
 # Differentiating host and guest code
 
