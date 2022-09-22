@@ -57,11 +57,14 @@ Q:
 I've encountered an error while running my project for the RISC Zero zkVM! It looks like this:
 
 * Error A:
-<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception { what: "Expand failed: at max steps" }', starter/src/main.rs:7:32</code>.
-<br/><br/>
+<pre>
+<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception &#123; what: "Expand failed: at max steps" &#125;', starter/src/main.rs:7:32</code>
+</pre>
 * Error B:
-<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception { what: "circuit.validCode(codeMerkle.getRoot())" }', starter/src/main.rs:7:32
-</code>.
+<pre>
+<code>thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Exception &#123; what: "circuit.validCode(codeMerkle.getRoot())" &#125;', starter/src/main.rs:7:32
+</code>
+</pre>
 
 What is happening and how can I fix it?
 </summary>
