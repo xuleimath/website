@@ -14,7 +14,7 @@ For those looking to implement their own password solutions: we do not present a
 
 # Overview
 
-In some ways, Alice's process follows convention. Alice generates a `password` that meets Bob's requirements, and Bob receives a `SHA-256 hash of Alice's password` along with a `salt`. Like all RISC Zero projects for the zkVM, the bulk of the password checker program is divided between a [host driver](https://github.com/risc0/password_checker/blob/main/starter/src/main.rs) that runs the zkVM code and a [guest program](https://github.com/risc0/password_checker/blob/main/methods/guest/src/bin/pw_checker.rs) that executes on the zkVM. By taking advantage of the RISC Zero zkVM, Alice can run a password validity check and her password never needs to leave her local machine.Alice's process is as follows:
+In some ways, Alice's process follows convention. Alice generates a `password` that meets Bob's requirements, and Bob receives a `SHA-256 hash of Alice's password` along with a `salt`. Like all RISC Zero projects for the zkVM, the bulk of the password checker program is divided between a [host driver](https://github.com/risc0/password_checker/blob/main/starter/src/main.rs) that runs the zkVM code and a [guest program](https://github.com/risc0/password_checker/blob/main/methods/guest/src/bin/pw_checker.rs) that executes on the zkVM. By taking advantage of the RISC Zero zkVM, Alice can run a password validity check and her password never needs to leave her local machine. Alice's process is as follows:
 
 * Alice's `host driver program` shares a password and salt with the `guest zkVM` and initiates guest program execution.
 * The `guest zkVM program` checks Alice's password against a set of validity requirements.
