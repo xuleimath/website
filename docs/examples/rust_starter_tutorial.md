@@ -13,10 +13,10 @@ This tutorial will introduce you to working with the RISC Zero zkVM in Rust, inc
 * What artifacts are produced by the RISC Zero zkVM, and how to use those artifacts to attest to the execution of the guest code
 
 This tutorial will _not_ include:
-* The cryptographic theory behind the RISC Zero zkVM (see TODO REFERENCE)
-* The internal components of the RISC Zero zkVM (see TODO REFERENCE)
-* Design considerations for programs that use multiple RISC Zero zkVM guest methods as part of larger systems to accomplish complex tasks (see TODO REFERENCE PROBABLY BATTLESHIP OR VOTING MACHINE)
-* A detailed example of writing a verifier that can check whether a purported proof from an untrusted source is valid (but some comments on this topic will be provided)
+* The cryptographic theory behind the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
+* The internal components of the RISC Zero zkVM (see our [Overview of the zkVM](../explainers/zkvm) article)
+* Design considerations for programs that use multiple RISC Zero zkVM guest methods as part of larger systems to accomplish complex tasks (see our [Battleship example](battleship_rust.md))
+* A detailed example of writing a verifier that can check whether a purported proof from an untrusted source is valid (but some brief comments on this topic will be provided)
 
 ## Structure of a RISC Zero zkVM Program
 Like other virtual machines, the RISC Zero zkVM has both _host_ and _guest_ components. The guest component contains the code to be proven. The host component provides any required data to the guest, executes the guest code, and handles the guest's output.
@@ -44,7 +44,7 @@ project_name
 │   │   ├── build.rs                       <-- Build (link) code goes here
 │   │   └── src
 │   │       └── bin
-│   │           └── guest_method_name.rs   <-- Guest code goes here
+│   │           └── method_name.rs         <-- Guest code goes here
 │   └── src
 │       └── lib.rs                         <-- Build (include) code goes here
 └── project_or_component_name
@@ -140,20 +140,20 @@ Now let's look at the host code need to execute the guest.
 
 Let's look at the simplest case where the host doesn't need to communicate with the guest, first in full and then line by line:
 ```
-use methods::{TODO_ID, TODO_PATH};
+use methods::{METHOD_NAME_ID, METHOD_NAME_PATH};
 use risc0_zkvm::host::Prover;
 
 fn main() {
-    let mut prover = Prover::new(&std::fs::read(TODO_PATH).unwrap(), TODO_ID).unwrap();
+    let mut prover = Prover::new(&std::fs::read(METHOD_NAME_PATH).unwrap(), METHOD_NAME_ID).unwrap();
 
     let receipt = prover.run().unwrap();
 
-    receipt.verify(TODO_ID).unwrap();
+    receipt.verify(METHOD_NAME_ID).unwrap();
 }
 ```
 We start with use declarations
 ```
-use methods::{TODO_ID, TODO_PATH};
+use methods::{METHOD_NAME_ID, METHOD_NAME_PATH};
 use risc0_zkvm::host::Prover;
 ```
 For `Prover` this is straightforward, but the `methods` are coming from computer generated code. Specifically, the `methods.rs` [file you included earlier](#including) contains generated constants needed to call guest methods. For each [guest code file](#guest-code), two constants are generated: `<FILENAME>_ID` and `<FILENAME>_PATH` (where `<FILENAME>` is the name of the file rendered in all capital letters). The `<FILENAME>_ID` is a _method ID_, a cryptographic hash that will be committed to the receipt and allows you to convince a verifier that the code you proved is the same code you are showing to them. The `<FILENAME>_PATH` is a path to where your method was built.
@@ -162,7 +162,7 @@ fn main() {
 ```
 The host is executed directly, so this is the normal Rust `main` function.
 ```
-    let mut prover = Prover::new(&std::fs::read(TODO_PATH).unwrap(), TODO_ID).unwrap();
+    let mut prover = Prover::new(&std::fs::read(METHOD_NAME_PATH).unwrap(), METHOD_NAME_ID).unwrap();
 ```
 This creates a prover, which can be run to execute its associated guest code and produce a receipt proving execution. It must be initialized with the contents of an ELF file of the code to be executed and with a method ID. These have be created in the build step, and can be accessed via the `<FILENAME>_PATH` and `<FILENAME>_ID` constants.
 ```
@@ -170,6 +170,6 @@ This creates a prover, which can be run to execute its associated guest code and
 ```
 This line actually runs the guest code inside the prover, the result of which is a receipt proving the execution. From here we can transfer the receipt to anyone we wish to verify our code -- for the sake of this tutorial, we will do so in the same process.
 ```
-    receipt.verify(TODO_ID).unwrap();
+    receipt.verify(METHOD_NAME_ID).unwrap();
 ```
 This line verifies that a receipt corresponds to the execution of guest code whose method ID is `<FILENAME>_ID`. It's not necessary for the prover to run this line to make a valid proof. Instead, this is needed by anyone who wishes to verify that they have an honest receipt.
