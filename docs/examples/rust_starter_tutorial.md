@@ -15,7 +15,6 @@ This tutorial will introduce you to working with the RISC Zero zkVM in Rust, inc
 This tutorial will _not_ include:
 * The cryptographic theory behind the RISC Zero zkVM (see TODO REFERENCE)
 * The internal components of the RISC Zero zkVM (see TODO REFERENCE)
-* (TODO: Do we include this one?) Instructions for constructing a zero-knowledge proof from a raw ELF file, or the requirements for such a file (see TODO REFERENCE)
 * Design considerations for programs that use multiple RISC Zero zkVM guest methods as part of larger systems to accomplish complex tasks (see TODO REFERENCE PROBABLY BATTLESHIP OR VOTING MACHINE)
 * A detailed example of writing a verifier that can check whether a purported proof from an untrusted source is valid (but some comments on this topic will be provided)
 
