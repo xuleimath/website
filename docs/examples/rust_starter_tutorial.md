@@ -6,7 +6,7 @@ Welcome to the RISC Zero zero-knowledge virtual machine (zkVM) Rust tutorial! He
 
 This tutorial will introduce you to working with the RISC Zero zkVM in Rust, including:
 * How to write RISC Zero zkVM guest code using the `risc0-zkvm-guest` crate
-* How to build RISC Zero zkVM guest code using the `risc0-zkvm-build` crate
+* How to build RISC Zero zkVM guest code using the `risc0-build` crate
 * How to execute the RISC Zero zkVM from a host using the `risc0-zkvm` crate
 * How and when to privately share data between the host and guest
 * How and when to publish data from the guest to the public journal
