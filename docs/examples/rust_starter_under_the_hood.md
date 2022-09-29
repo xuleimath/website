@@ -3,6 +3,8 @@ slug: starter
 title: Understanding the Rust starter project
 ---
 
+TODO: This is written as understanding the _starter_, but if the starter template PR lands, this will instead be about the `factor` example in the examples repo. Update the language here to reflect this.
+
 Welcome to the RISC Zero zero-knowledge virtual machine (zkVM)! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs. Reading this document should help you get acquainted with writing code for the zkVM. Although code has been omitted for simplicity, we strongly recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
 
 By reading this post, you should learn, at a high level:
