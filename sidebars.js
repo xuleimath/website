@@ -45,7 +45,7 @@ module.exports = {
         {
           type: 'doc',
           label: 'RISC Zero Password Explainer',
-          id: 'examples/password-checker',
+          id: 'examples/password_checker',
         },
         {
           type: 'link',
