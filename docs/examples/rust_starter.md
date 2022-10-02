@@ -3,15 +3,14 @@ slug: starter
 title: Understanding the RISC Zero Rust Starter Program
 ---
 
-the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository. 
-
-This document will explain the mechanics of a software project for the `RISC Zero zkVM`. If this is your first time looking at a RISC Zero project, we'll help you make sense of the programs it contains and the computational `receipt` that's produced.
+This 
+This document will explain the mechanics of the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter), a minimally complex software project for the `RISC Zero zkVM`. If this is your first time looking at a RISC Zero project, we'll help you make sense of the programs it contains and the computational `receipt` that's produced.
 
 A project for the RISC Zero zkVM consists primarily of a `host driver program` that executes a second `guest program` written for the zkVM. The host and guest may exchange data during guest program execution. The guest program may also publicly share the results of its computations. After execution, the RISC Zero zkVM provides a cryptographically strong argument that we performed these computations, which is witnessed by a verifiable `receipt`.
 
 # A program to multiply two numbers in the zkVM
 
-In the Rust starter program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The resulting `receipt` may be sent to a third party; it includes the publicly shared product and, by confirming the program used to generate it, demonstrates that the product is composite.
+In the Rust starter program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The resulting `receipt` may be sent to a third party; it includes the publicly shared product and, by confirming the program used to generate it, demonstrates that our product is composite (and that we knew its factors).
 
 # Differentiating host and guest code
 
