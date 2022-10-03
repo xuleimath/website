@@ -30,4 +30,8 @@ Since you haven't added any functionality yet, there won't be any output.
 
 ## Writing guest code
 
+The guest code is the code that will be verified. In our case, we want verifiers to be convinced that we constructed the output number by multiplying two nontrivial factors, so we will implement multiplication in the guest.
 
+The guest code is located in `methods/guest/src/bin/method_name.rs`. There are two `TODO` comments in the file that you'll need to implement. The first is to rename the file -- let's change the name from `method_name.rs` to `multiply.rs`, since the guest code will multiply two numbers.
+
+The second `TODO` is to actually implement the guest code. The first thing we will need to do is read private data from the host, namely the factors to be multiplied.
