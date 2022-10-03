@@ -4,6 +4,8 @@ title: "Rust zkVM Tutorial: Writing a Prover"
 
 Welcome to the RISC Zero zero-knowledge virtual machine (zkVM) Rust tutorial! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs. Reading this document should help you get acquainted with writing code for the zkVM. We recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
 
+TODO: Rewrite based on the content shifted to the upcoming from-template tutorial
+
 This tutorial will introduce you to working with the RISC Zero zkVM in Rust, including:
 * How to write RISC Zero zkVM guest code using the `risc0-zkvm-guest` crate
 * How to build RISC Zero zkVM guest code using the `risc0-build` crate
