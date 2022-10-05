@@ -7,7 +7,7 @@ displayed_sidebar: GettingStartedSidebar
 ## Examples and Explanations 
 To get started building with RISC Zero, take a look at these examples, which feature explanations and tutorials for code available in our GitHub repositories:
 
-* [**Hello World in Rust**](examples/rust_starter_tutorial.md) - Our starter project for the RISC Zero zkVM. If you're just getting started writing code for the zkVM, we recommend reading (and playing with) this repository.
+* [**Hello World in Rust**](examples/rust_starter_tutorial.md) - Our starter project for the RISC Zero zkVM. If you're just getting started writing code for the zkVM, we recommend reading (and playing with) this repository. TODO: This is a broken link and probably a bad description.
 
 * [**RISC Zero Battleship**](examples/battleship_rust.md) - To see a more complex use of the RISC Zero zkVM in action, take a look at this working Battleship game. Here, players use private game board states to track whether opponents have sunk their battleships.
 
