@@ -1,22 +1,18 @@
 ---
-title: "Rust zkVM Tutorial: Writing a Prover"
+title: "Understanding the RISC Zero zkVM Starter Template"
 ---
 
-Welcome to the RISC Zero zero-knowledge virtual machine (zkVM) Rust tutorial! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs. Reading this document should help you get acquainted with writing code for the zkVM. We recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
-
-This tutorial will introduce you to working with the RISC Zero zkVM in Rust, including:
-* How to write RISC Zero zkVM guest code using the `risc0-zkvm-guest` crate
-* How to build RISC Zero zkVM guest code using the `risc0-build` crate
-* How to execute the RISC Zero zkVM from a host using the `risc0-zkvm` crate
-* How and when to privately share data between the host and guest
-* How and when to publish data from the guest to the public journal
-* What artifacts are produced by the RISC Zero zkVM, and how to use those artifacts to attest to the execution of the guest code
+The [RISC Zero Rust starter template](https://github.com/risc0/risc0-rust-starter) provides a starting point for RISC Zero zkVM projects. This article will describe what the template code does, and why we've written it this way. In particular, it should help you understand:
+* The host, guest, and build components of RISC Zero zkVM programs
+* How guest methods are built and made available to the host
+* How the host calls guest methods
+* What is included in Cargo files to be able to run the zkVM
 
 This tutorial will _not_ include:
+* How to create a project based on the starter template (see TODO: Hello Multiply)
 * The cryptographic theory behind the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
 * The internal components of the RISC Zero zkVM (see our [Overview of the zkVM](../explainers/zkvm) article)
 * Design considerations for programs that use multiple RISC Zero zkVM guest methods as part of larger systems to accomplish complex tasks (see our [Battleship example](battleship_rust.md))
-* A detailed example of writing a verifier that can check whether a purported proof from an untrusted source is valid (but some brief comments on this topic will be provided)
 
 ## Structure of a RISC Zero zkVM Program
 Like other virtual machines, the RISC Zero zkVM has both _host_ and _guest_ components. The guest component contains the code to be proven. The host component provides any required data to the guest, executes the guest code, and handles the guest's output.
@@ -31,7 +27,7 @@ Each of these components uses its own associated RISC Zero crate:
 * The _build_ code for building guest methods uses the [`risc0-build` crate](https://docs.rs/risc0-build/latest)
 * The _host_ code uses the [`risc0-zkvm` crate](https://docs.rs/risc0-zkvm/latest)
 
-It is possible to organize the files for these components in various ways. However, in code published by RISC Zero we use a standard directory structure for zkVM code, and we recommend you use this structure as well. See below for a diagram of this directory structure with annotations. You can also see this structure in the [Rust starter example repository](https://github.com/risc0/risc0-rust-starter).
+It is possible to organize the files for these components in various ways. However, in code published by RISC Zero we use a standard directory structure for zkVM code, and we recommend you use this structure as well. See below for a diagram of this directory structure with annotations. You can also see this structure in the [Rust starter template repository](https://github.com/risc0/risc0-rust-starter).
 
 ```
 project_name
@@ -53,13 +49,10 @@ project_name
         └── main.rs                        <-- Host code goes here
 ```
 
-Now let's go through writing code for each of these three components in detail.
+Now let's go through these three components in detail.
 
 ## Guest code
-First let's look at the how to write guest code. This is the code you will be proving you faithfully executed.
-
-### Guest code: No-op
-In the simplest case, the guest code can do nothing at all, as shown below:
+The guest code is the code the prover wants to demonstrate is faithfully executed. The template starts from the simplest possible guest code -- its guest method does nothing:
 ```
 #![no_std]
 #![no_main]
@@ -67,7 +60,7 @@ In the simplest case, the guest code can do nothing at all, as shown below:
 risc0_zkvm_guest::entry!(main);
 
 pub fn main() {
-    // Do nothing
+    // TODO: Implement your guest code here
 }
 ```
 
@@ -84,7 +77,7 @@ risc0_zkvm_guest::entry!(main);
 The guest code is never launched as a standalone Rust executable, so we specify `#![no_main]`. However, we must make the guest code available for the host to launch, and to do that we must specify which function to call when the host starts executing this guest code. We use the `risc0_zkvm_guest::entry!` macro to indicate the initial guest function to call, which in this case is `main`.
 ```
 pub fn main() {
-    // Do nothing
+    // TODO: Implement your guest code here
 }
 ```
 Here is the actual guest code. Notice that the function is named `main`, matching the name specified in `entry!`, so this is the function that will be called when the host launches the guest. In real use cases, you would do more than nothing in this function.
@@ -93,9 +86,10 @@ Here is the actual guest code. Notice that the function is named `main`, matchin
 
 The `risc0-build` crate has two functions, [`embed_methods`](https://docs.rs/risc0-build/latest/risc0_build/fn.embed_methods.html) and [`link`](https://docs.rs/risc0-build/latest/risc0_build/fn.link.html), which are used to build guest code into a method (or methods) that the host can call. Simple use cases have no need to do any customization for the build step, and you can just call these functions as described below. For more complex cases, it is sometimes useful to replace `embed_methods` with [`embed_methods_with_options`](https://docs.rs/risc0-build/latest/risc0_build/fn.embed_methods_with_options.html) (see TODO FAQ ABOUT TOO MANY CYCLES for an example where you might want to specify embedding options).
 
+These functions are called at build time using [Cargo build scripts](https://doc.rust-lang.org/cargo/reference/build-scripts.html). The resulting files with the built methods must then be included so that the host can depend on them.
 
 ### Linking
-To link the guest code, simply add a `build.rs` file to the root of your `guest` directory containing the following:
+The guest code is linked via a `build.rs` file in the root of the `guest` directory containing the following:
 ```
 fn main() {
     risc0_build::link();
@@ -103,7 +97,7 @@ fn main() {
 ```
 
 ### Embedding
-To embed the guest methods, add a `build.rs` file to the methods directory where you want the methods embedded. This is where your host code will need to look to find the guest methods. A basic `build.rs` file for embedding methods looks as follows:
+The guest methods are embedded using a `build.rs` file in the methods directory where you want the methods embedded. This is where the host code will need to look to find the guest methods. A basic `build.rs` file for embedding methods looks as follows:
 ```
 fn main() {
     risc0_build::embed_methods();
@@ -112,44 +106,49 @@ fn main() {
 For more advanced cases, replace `embed_methods` with a call to [`embed_methods_with_options`](https://docs.rs/risc0-build/latest/risc0_build/fn.embed_methods_with_options.html) and set appropriate options for your use case.
 
 ### Including
-Linking and embedding the guest methods using these [build scripts](https://doc.rust-lang.org/cargo/reference/build-scripts.html) creates source files in the Rust output directory. To make this code available to the host, you need to include these generated files somewhere the host can find them. So, in your methods directory, create a file `src/lib.rs` with the following include command:
+Linking and embedding the guest methods using these [build scripts](https://doc.rust-lang.org/cargo/reference/build-scripts.html) creates source files in the Rust output directory. To make this code available to the host, these generated files must be included somewhere the host can find them. So the methods directory contains a file `src/lib.rs` with the following include command:
 ```
 include!(concat!(env!("OUT_DIR"), "/methods.rs"));
 ```
 
 ### Build dependencies in Cargo
-Both linking and embedding depend on `risc0-build`. Since these happen in built scripts, Cargo needs to know they are _build_ dependencies. Therefore, in both the guest directory Cargo file (for linking) and the methods directory cargo file (for embedding), you need to include
+Both linking and embedding depend on `risc0-build`. Since these happen in built scripts, Cargo needs to know they are _build_ dependencies. Therefore, in both the guest directory Cargo file (for linking) and the methods directory cargo file (for embedding), we include
 ```
 [build-dependencies]
 risc0-build = "0.11"
 ```
 (or adjust the version number if you want to use a different version of risc0).
 
-Additionally, the `embed_methods` code needs to know where to find the guest code. This is indicated with custom risc0 metadata in the methods directory cargo file, which looks something like
+Additionally, the `embed_methods` code needs to know where to find the guest code. This is indicated with custom `risc0` metadata in the methods directory cargo file, which looks like
 ```
 [package.metadata.risc0]
 methods = ["guest"]
 ```
-Here `"guest"` is the relative path to the root of the directory with the guest source code. This is the conventional location for the guest source code, so you don't need to change it if you are following the directory structure outlined above.
+Here `"guest"` is the relative path to the root of the directory with the guest source code, and can be adjusted if you aren't following the directory structure outlined above.
 
 ## Host code
 
-Now let's look at the host code need to execute the guest.
-
-### Host code: No-op
-
-Let's look at the simplest case where the host doesn't need to communicate with the guest, first in full and then line by line:
+Now let's look at the host code need to execute the guest. The code in the template does not communicate with the guest or provide a method for sending the receipt to an external verifier. Let's look at the code first in full, then line by line:
 ```
 use methods::{METHOD_NAME_ID, METHOD_NAME_PATH};
 use risc0_zkvm::host::Prover;
 
 fn main() {
-    let mut prover = Prover::new(&std::fs::read(METHOD_NAME_PATH).unwrap(), METHOD_NAME_ID).unwrap();
+    // Make the prover.
+    let method_code = std::fs::read(METHOD_NAME_PATH)
+        .expect("Method code should be present at the specified path; did you use the correct *_PATH constant?");
+    let mut prover = Prover::new(&method_code, METHOD_NAME_ID)
+        .expect("Prover should be constructed from valid method source code and corresponding method ID");
 
-    let receipt = prover.run().unwrap();
+    // Run prover & generate receipt
+    let receipt = prover.run()
+        .expect("Valid code should be provable if it doesn't overflow the cycle limit. See `embed_methods_with_options` for information on adjusting maximum cycle count.");
 
-    receipt.verify(METHOD_NAME_ID).unwrap();
+    // Optional: Verify receipt to confirm that recipients will also be able to verify your receipt
+    receipt.verify(METHOD_NAME_ID)
+        .expect("Code you have proven should successfully verify; did you specify the correct method ID?");
 }
+
 ```
 We start with use declarations
 ```
@@ -161,14 +160,17 @@ For `Prover` this is straightforward, but the `methods` are coming from computer
 fn main() {
 ```
 The host is executed directly, so this is the normal Rust `main` function.
+
+We will replace `expect`s with `unwrap`s in the following lines so we can focus on the core functionality:
 ```
-    let mut prover = Prover::new(&std::fs::read(METHOD_NAME_PATH).unwrap(), METHOD_NAME_ID).unwrap();
+    let method_code = std::fs::read(METHOD_NAME_PATH).unwrap();
+    let mut prover = Prover::new(&method_code, METHOD_NAME_ID).unwrap();
 ```
 This creates a prover, which can be run to execute its associated guest code and produce a receipt proving execution. It must be initialized with the contents of an ELF file of the code to be executed and with a method ID. These have be created in the build step, and can be accessed via the `<FILENAME>_PATH` and `<FILENAME>_ID` constants.
 ```
     let receipt = prover.run().unwrap();
 ```
-This line actually runs the guest code inside the prover, the result of which is a receipt proving the execution. From here we can transfer the receipt to anyone we wish to verify our code -- for the sake of this tutorial, we will do so in the same process.
+This line actually runs the guest code inside the prover, the result of which is a receipt proving the execution. From here we can transfer the receipt to anyone we wish to verify our code -- in the template, we do so in the same process for simpilicity.
 ```
     receipt.verify(METHOD_NAME_ID).unwrap();
 ```
