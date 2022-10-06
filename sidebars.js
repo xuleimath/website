@@ -24,7 +24,7 @@ module.exports = {
         },
         {
           type: 'link',
-          label: 'Rust Starter Source',
+          label: '"Hello, Multiply!" Source',
           href: 'https://github.com/risc0/risc0-rust-examples/tree/main/factors',
         },
       ]
@@ -45,7 +45,7 @@ module.exports = {
       ]
     },
     { type: 'category',
-      label: 'RISC Zero Battleship',
+      label: 'Battleship',
       items: [
         {
           type: 'doc',
@@ -60,7 +60,7 @@ module.exports = {
       ]
     },
     { type: 'category',
-      label: 'RISC Zero Digital Signatures',
+      label: 'Digital Signatures',
       items: [
         {
           type: 'doc',
@@ -75,7 +75,7 @@ module.exports = {
       ]
     },
     { type: 'category',
-    label: 'RISC Zero Password Validity Checker',
+    label: 'Password Validity Checker',
     items: [
       {
         type: 'doc',
