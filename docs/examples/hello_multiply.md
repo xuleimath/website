@@ -6,7 +6,7 @@ In this guide, we'll be writing a program that demonstrates a number is composit
 
 # Step 1: Clone the template repository
 
-To get started, clone the [Rust starter template](https://github.com/risc0/risc0-rust-starter). (An explanation of the template code is [also available](rust_starter_tutorial.md).)
+To get started, clone the [Rust starter template](https://github.com/risc0/risc0-rust-starter). (An explanation of the template code is [also available](rust_starter_tutorial.md).) If you intend to publish your project, you should instead follow the [directions for creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) on GitHub.
 
 # Step 2: Modify file names (and their references)
 
