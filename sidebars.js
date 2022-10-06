@@ -45,6 +45,21 @@ module.exports = {
       ]
     },
     { type: 'category',
+      label: 'RISC Zero Password Validity Checker',
+      items: [
+        {
+          type: 'doc',
+          label: 'RISC Zero Password Explainer',
+          id: 'examples/password_checker',
+        },
+        {
+          type: 'link',
+          label: 'RISC Zero Password Source',
+          href: 'https://github.com/risc0/risc0-rust-examples/tree/main/password-checker',
+        }
+      ]
+    },
+    { type: 'category',
       label: 'RISC Zero Digital Signatures',
       items: [
         {
