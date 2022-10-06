@@ -49,7 +49,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          label: 'Battleship Explainer',
+          label: 'Understanding Battleship',
           id: 'examples/battleship_rust',
         },
         {
@@ -64,7 +64,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          label: 'Digital Signatures Explainer',
+          label: 'Understanding Digital Signatures',
           id: 'examples/digital_signatures',
         },
         {
