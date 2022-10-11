@@ -7,7 +7,7 @@ tags: [metamath, fm, zk]
 
 Hello everyone! I'm Bolton Bailey, a Ph.D. student and software
 engineer at RISC Zero. I'm writing this blog post to discuss a project
-that I've been working on, in conjunction with Runtime Verification
+that I've been working on, in conjunction with [Runtime Verification](https://runtimeverification.com/)
 Inc., to run a Metamath checker inside the RISC Zero zkVM. Although this
 project is just getting started, I think it's headed in a very exciting
 direction. In this post, I'd like to share with you all what makes it
