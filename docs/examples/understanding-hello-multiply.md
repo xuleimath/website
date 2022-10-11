@@ -14,7 +14,7 @@ By reading this post, you should learn, at a high level:
 * What information the prover would need to transmit to convince a real recipient
 
 This post will not cover:
-* A detailed cryptograph analysis of the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
+* A detailed cryptographic analysis of the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
 * How to write code using the RISC Zero zkVM (see the [Hello Multiply tutorial](hello_multiply.md), or [our examples generally](..))
 
 # Overview: A program to multiply two numbers in the zkVM
