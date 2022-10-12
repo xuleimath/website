@@ -3,7 +3,7 @@ slug: starter
 title: Understanding Hello Multiply
 ---
 
-The [Hello Multiply tutorial](TODO:link) tells you how to write code that proves you know the factors of a number -- but what is this code doing? What mechanisms does the RISC Zero zkVM use to prove the execution of the source code you provide it?
+The [Hello Multiply tutorial](hello_multiply.md) tells you how to write code that proves you know the factors of a number -- but what is this code doing? What mechanisms does the RISC Zero zkVM use to prove the execution of the source code you provide it?
 
 The complete answer to those questions requires detailed and precise cryptographic arguments. Nevertheless, here we present a short summary of what the zkVM is doing in Hello Multiply, as an overview of the general approach of the RISC Zero zkVM. We hope that this overview helps orient you to the components of the RISC Zero zkVM, and give a sense of why it might be plausible that code executed in the zkVM could be proven to parties who don't trust the prover.
 
@@ -14,8 +14,8 @@ By reading this post, you should learn, at a high level:
 * What information the prover would need to transmit to convince a real recipient
 
 This post will not cover:
-* A detailed cryptograph analysis of the RISC Zero zkVM. (TODO: See...?)
-* How to write a RISC Zero prover or verifier (TODO: See...?)
+* A detailed cryptographic analysis of the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
+* How to write code using the RISC Zero zkVM (see the [Hello Multiply tutorial](hello_multiply.md), or [our examples generally](..))
 
 # Overview: A program to multiply two numbers in the zkVM
 
@@ -139,4 +139,6 @@ In our example, the receipt is verified from the `main.rs` host program. However
 
 We would also want to give the source code for the guest program to the recipient. The recipient would generate the `method ID` of the zkVM program binary on their side and use this to check the receipt's method ID.
 
-TODO: Link to the password checker! In an upcoming article, we'll show you how the computational receipt is created and checked in greater detail as we walk through how RISC Zero projects can allow us to trust user-provided data. We'll look at a slightly (but not much) more involved program that allows a user to check their own password against a set of validity requirements (e.g., the inclusion of uppercase letters) and provide their own password hash. If you have any questions or are interested in talking about zkVM projects, come find us on [Twitter](https://twitter.com/risczero) and [Discord](https://discord.com/invite/risczero). We'd love to see what you build using the RISC Zero zkVM!
+If you would like to know more about receipts, we recommend our article [Understanding the Password Validity Checker](password_checker.md). We'll show you how the computational receipt is created and checked in greater detail as we walk through how RISC Zero projects can allow us to trust user-provided data. We'll look at a slightly (but not much) more involved program that allows a user to check their own password against a set of validity requirements (e.g., the inclusion of uppercase letters) and provide their own password hash.
+
+If you have any questions or are interested in talking about zkVM projects, come find us on [Twitter](https://twitter.com/risczero) and [Discord](https://discord.com/invite/risczero). We'd love to see what you build using the RISC Zero zkVM!

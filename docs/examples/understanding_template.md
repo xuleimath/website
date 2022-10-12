@@ -9,7 +9,7 @@ The [RISC Zero Rust starter template](https://github.com/risc0/risc0-rust-starte
 * What is included in Cargo files to be able to run the zkVM
 
 This tutorial will _not_ include:
-* How to create a project based on the starter template (see TODO: Hello Multiply)
+* How to create a project based on the starter template (see [Hello, Multiply](hello_multiply.md))
 * The cryptographic theory behind the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
 * The internal components of the RISC Zero zkVM (see our [Overview of the zkVM](../explainers/zkvm) article)
 * Design considerations for programs that use multiple RISC Zero zkVM guest methods as part of larger systems to accomplish complex tasks (see our [Battleship example](battleship_rust.md))

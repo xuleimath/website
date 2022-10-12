@@ -109,7 +109,6 @@ First, we use `env::read()` to load both numbers:
 ```
     let a: u64 = env::read();
     let b: u64 = env::read();
-}
 ```
 ### Confirm that factors are non-trivial
 
