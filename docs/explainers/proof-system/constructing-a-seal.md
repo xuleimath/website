@@ -28,15 +28,17 @@ In this example, our trace consists of 6 `columns`.
 
 The full implementation also has `PLONK Columns`, allowing for RISC-V memory emulation. The `PLONK Columns` are not necessary in this simplified example. 						
 
-## Lesson 2: Rule-checks to Validate RISC-V Execution
+## Lesson 2: Rule checks to validate a computation
 
-Here, we introduce a number of rule-checking cells in order to demonstrate the validity of the RISC-V execution. In this example, we show six rules. In the full RISC-V implementation, we check over 100 rules in order to validate the execution trace. 
+Here, we introduce a number of rule-checking cells in order to demonstrate the validity of the execution. In this example, we show six rules specific to generating fibonnaci numbers.
 
 ![Lesson 2: Rule-checks to Validate RISC-V Execution](assets/fibonacci-02.png)
 
 Each rule check is written as the product of two terms, modulo 97. The first term equals zero when the rule holds. The second term equals zero when we don't want to enforce the rule. 									
 
 Each rule checking column can be expressed as a multi-input, single-output polynomial, where the inputs are some combination of entries in the trace; we call these `rule-checking polynomials`.	
+
+In the full RISC-V implementation, the rules make up what it means to execute RISC-V instructions properly (i.e. checking that the program counter increments after every instruction). We check thousands of rules in order to validate the execution trace.
 
 ## Lesson 3: Padding the Trace
 
