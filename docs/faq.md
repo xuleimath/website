@@ -71,7 +71,7 @@ What is happening and how can I fix it?
 <br/>
 A: Both errors arise when the zkVM runs out of available instruction cycles. Error A arises if your guest zkVM program took more instruction cycles to run than were available. Error B comes about if you've only used <i>slightly</i> more instruction cycles than the zkVM can process; the zkVM has completed program execution, but it ran out of steam during receipt validation.
 <br/><br/>
-In both cases, you can manually increase the number of available instruction cycles by changing the `code_limit` build option. To do this, edit <a href ="https://github.com/risc0/risc0-rust-starter/blob/main/methods/build.rs">methods/build.rs</a> to call <code>embed_methods_with_options</code> rather than <code>embed_methods</code>. We've opted for a <code>no-std</code> build in the snippet below, so use <code>std: true</code> if your guest program relies on standard:
+In both cases, you can manually increase the number of available instruction cycles by changing the `code_limit` build option. To do this replace <code>embed_methods</code> with a call to <code>embed_methods_with_options</code> (In our example code, this call happens in <a href ="https://github.com/risc0/risc0-rust-starter/blob/main/methods/build.rs">methods/build.rs</a>). We've opted for a <code>no-std</code> build in the snippet below, so use <code>std: true</code> if your guest program relies on standard:
 <br/><br/>
 <code>
 // The default code_limit is 12. Increase this value up to a maximum of 16.
