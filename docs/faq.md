@@ -73,7 +73,7 @@ In both cases, you can manually increase the number of available instruction cyc
 <code>
 // The default code_limit is 12. Increase this value up to a maximum of 16.
 
-let options_map = HashMap::from([("methods-guest", risc0_build::GuestOptions{ code_limit: 16, features: vec![], std: false })]);
+let options_map = HashMap::from([("methods-guest", risc0_build::GuestOptions{ code_limit: 16, features: vec![] })]);
 
 risc0_build::embed_methods_with_options(options_map);
 </code>
