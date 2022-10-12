@@ -5,13 +5,10 @@ id: tech_faq
 
 -------------------------------
 ## Contents
-- [FAQ](#faq)
   - [Contents](#contents)
   - [ZKP System](#zkp-system)
   - [Code Project Help](#code-project-help)
-  - [<br/>](#)
   - [Guest / Host Interactions](#guest--host-interactions)
-  - [<br/>](#-1)
   - [Data Processing & Performance](#data-processing--performance)
 
 -------------------------------
