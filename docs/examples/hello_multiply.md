@@ -2,13 +2,13 @@
 
 In this guide, we'll be writing a program that demonstrates a number is composite and *we know its factors*. If you'd like to start with an under-the-hood explanation of what this program will do, we've written one [here](understanding-hello-multiply.md). To jump ahead and see the finished product, look in [this repository](https://github.com/risc0/risc0-rust-examples/)If you're ready to code, let's dive in!
 
-# Step 1: Clone the template repository
+## Step 1: Clone the template repository
 
 To get started, clone the [Rust starter template](https://github.com/risc0/risc0-rust-starter). (An explanation of the template code is [also available](understanding_template.md).) If you intend to publish your project, you should instead follow the [directions for creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) on GitHub.
 
-# Step 2: Modify file names (and their references)
+## Step 2: Modify file names (and their references)
 
-## Name the new project
+### Name the new project
 
 Let's give our "Hello, Multiply!" project a name. Rename the folder `project_or_component name` to `factors`.
 
@@ -21,7 +21,7 @@ members = [
 ]
 ```
 
-## Give the guest program a name
+### Give the guest program a name
 
 This project will call a program that executes on the `guest zkVM`. It's currently named `methods/guest/src/bin/method_name.rs`. We want to name it something that represents what the guest program does -- let's call it `multiply.rs`.
 
@@ -50,11 +50,11 @@ While we're at it, let's change the rest of the references in `factors/src/main.
         .expect("Code you have proven should successfully verify; did you specify the correct method ID?");
 ```
 
-# Intermission: Build and run the project!
+### Intermission: Build and run the project!
 
 In the main project folder, build and run the project using `cargo run --release`. Nothing exciting should happen yet, but we'll know if any of the above changes were missed. Use this command any time you'd like to check your progress.
 
-# Step 3 (Host): Have the host program share two values with the guest
+## Step 3 (Host): Share two values with the guest
 
 In this step, we'll be continuing to modify `factors/src/main.rs`. Let's start by picking some aesthetically pleasing primes:
 ```
@@ -82,7 +82,7 @@ Currently, our host driver program creates and runs a prover. The `prover.run()`
 ```
 
 
-# Step 4 (Guest): Multiply two values and commit their result
+## Step 4 (Guest): Multiply two values and commit their result
 
 Now it's time to start writing guest code. Open the main guest program file `methods/guest/src/bin/multiply.rs`. In its final form, we'll tell the guest to read the values of `a` and `b` from the host and multiply them together. We'll then publicly commit their product to the `receipt` portion of the `journal`.
 
@@ -102,7 +102,7 @@ pub fn main() {
     env::commit(&product);
 }
 ```
-## Load values from the host
+### Load values from the host
 
 First, we use `env::read()` to load both numbers:
 
@@ -111,7 +111,7 @@ First, we use `env::read()` to load both numbers:
     let b: u64 = env::read();
 }
 ```
-## Confirm that factors are non-trivial
+### Confirm that factors are non-trivial
 
 Next, we'll add a line that panics if either chosen value is 1. This will leave us with a guest program that only completes if the product of `a` and `b` is genuinely composite. 
 ```
@@ -123,7 +123,7 @@ Next, we'll add a line that panics if either chosen value is 1. This will leave 
 
 Now we can compute their product and `commit` it. Once committed to the `journal`, anyone with the receipt can read this value. As a final step, we'll have the host read and print the receipt's `journal` contents. In a real-world scenario, we'd want to hand the receipt to someone else, but reading it ourselves is a nice way to check our "Hello, Multiply!" project.
 
-# Step 5 (Host): Generate a receipt and read its journal contents
+## Step 5 (Host): Generate a receipt and read its journal contents
 
 For this step, we return to the main file for the host driver program at `factors/src/main.rs`, which currently ends with `receipt` generation after the prover runs:
 
