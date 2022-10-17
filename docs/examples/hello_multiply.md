@@ -10,7 +10,7 @@ To get started, clone the [Rust starter template](https://github.com/risc0/risc0
 
 ### Name the new project
 
-Let's give our "Hello, Multiply!" project a name. Rename the folder `project_or_component name` to `factors`.
+Let's give our "Hello, Multiply!" project a name. Rename the folder `project_or_component_name` to `factors`.
 
 Update the corresponding workspace member entry in the top-level `Cargo.toml` file:
 ```
