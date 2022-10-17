@@ -34,7 +34,7 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/risc0/website/edit/main/',
         },
-        pages : {},
+        pages: {},
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -81,7 +81,7 @@ const config = {
             to: '/blog'
           },
           {
-            href: 'https://boards.greenhouse.io/risczero',
+            href: 'https://jobs.lever.co/risczero.com',
             position: 'left',
             label: 'Careers',
           },
@@ -118,14 +118,14 @@ const config = {
               },
             ]
           },
-          
+
         ],
       },
       footer: {
         style: 'dark',
         links: [
           {
-          
+
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Risc0, Inc. Built with Docusaurus.`,

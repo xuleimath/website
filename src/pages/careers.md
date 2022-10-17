@@ -3,4 +3,4 @@ title: Careers
 ---
 
 # Careers
-See our current openings at https://boards.greenhouse.io/risczero
+See our current openings at https://jobs.lever.co/risczero.com
