@@ -1,6 +1,6 @@
 # "Hello, Multiply!": Write Your First Program for the RISC Zero zkVM
 
-In this guide, we'll be writing a program that demonstrates a number is composite and *we know its factors*. If you'd like to start with an under-the-hood explanation of what this program will do, we've written one [here](understanding-hello-multiply.md). To jump ahead and see the finished product, look in [this repository](https://github.com/risc0/risc0-rust-examples/)If you're ready to code, let's dive in!
+In this guide, we'll be writing a program that demonstrates a number is composite and *we know its factors*. If you'd like to start with an under-the-hood explanation of what this program will do, we've written one [here](understanding-hello-multiply.md). To jump ahead and see the finished product, look in [this repository](https://github.com/risc0/risc0-rust-examples/). If you're ready to code, let's dive in!
 
 ## Step 1: Clone the template repository
 
