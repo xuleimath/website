@@ -34,4 +34,4 @@ If you want to learn more about how Zero Knowlege works, here are some resources
 And for more on RISC Zero, check these out: 
 
 * https://github.com/risc0/risc0
-* https://www.risczero.com/docs/technology
+* https://www.risczero.com/docs/explainers
