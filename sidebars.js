@@ -10,46 +10,26 @@ module.exports = {
 
   GettingStartedSidebar: [
     { type: 'category',
-      label: '"Hello, Multiply!"',
+      label: 'Hello World in Rust',
       items: [
         {
           type: 'doc',
-          label: '"Hello, Multiply!" Tutorial',
-          id: 'examples/hello_multiply',
-        },
-        {
-          type: 'doc',
-          label: 'Understanding "Hello, Multiply!"',
-          id: 'examples/understanding-hello-multiply',
+          label: 'Rust Starter Explainer',
+          id: 'examples/rust_starter',
         },
         {
           type: 'link',
-          label: '"Hello, Multiply!" Source',
-          href: 'https://github.com/risc0/risc0-rust-examples/tree/main/factors',
-        },
-      ]
-    },
-    { type: 'category',
-      label: 'RISC Zero Starter Template',
-      items: [
-        {
-          type: 'doc',
-          label: 'Understanding the Starter Template',
-          id: 'examples/understanding_template',
-        },
-        {
-          type: 'link',
-          label: 'Starter Template Source',
+          label: 'Rust Starter Source',
           href: 'https://github.com/risc0/risc0-rust-starter',
-        }
+        },
       ]
     },
     { type: 'category',
-      label: 'Battleship',
+      label: 'RISC Zero Battleship',
       items: [
         {
           type: 'doc',
-          label: 'Understanding Battleship',
+          label: 'Battleship Explainer',
           id: 'examples/battleship_rust',
         },
         {
@@ -60,11 +40,26 @@ module.exports = {
       ]
     },
     { type: 'category',
-      label: 'Digital Signatures',
+      label: 'RISC Zero Password Validity Checker',
       items: [
         {
           type: 'doc',
-          label: 'Understanding Digital Signatures',
+          label: 'RISC Zero Password Explainer',
+          id: 'examples/password_checker',
+        },
+        {
+          type: 'link',
+          label: 'RISC Zero Password Source',
+          href: 'https://github.com/risc0/risc0-rust-examples/tree/main/password-checker',
+        }
+      ]
+    },
+    { type: 'category',
+      label: 'RISC Zero Digital Signatures',
+      items: [
+        {
+          type: 'doc',
+          label: 'Digital Signatures Explainer',
           id: 'examples/digital_signatures',
         },
         {
@@ -74,21 +69,6 @@ module.exports = {
         }
       ]
     },
-    { type: 'category',
-    label: 'Password Validity Checker',
-    items: [
-      {
-        type: 'doc',
-        label: 'Understanding the Password Validity Checker',
-        id: 'examples/password_checker',
-      },
-      {
-        type: 'link',
-        label: 'Password Validity Checker Source',
-        href: 'https://github.com/risc0/risc0-rust-examples/tree/main/password-checker',
-      }
-    ]
-  },
     { 
       type: 'link',
       label: 'RISC Zero Rust Crates',
