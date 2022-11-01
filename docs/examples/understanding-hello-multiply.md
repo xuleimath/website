@@ -1,23 +1,29 @@
 ---
 slug: starter
-title: Understanding the Rust starter project
+title: Understanding Hello Multiply
 ---
 
-Welcome to the RISC Zero zero-knowledge virtual machine (zkVM)! Here, we introduce a simple Rust code project; we encourage you to modify and expand it to learn how the zkVM works and to get a head start on building your own programs.Reading this document should help you get acquainted with writing code for the zkVM. Although code has been omitted for simplicity, we strongly recommend reading the following explanation in conjunction with the [RISC Zero Rust starter example](https://github.com/risc0/risc0-rust-starter) repository.
+The [Hello Multiply tutorial](hello_multiply.md) tells you how to write code that proves you know the factors of a number -- but what is this code doing? What mechanisms does the RISC Zero zkVM use to prove the execution of the source code you provide it?
+
+The complete answer to those questions requires detailed and precise cryptographic arguments. Nevertheless, here we present a short summary of what the zkVM is doing in Hello Multiply, as an overview of the general approach of the RISC Zero zkVM. We hope that this overview helps orient you to the components of the RISC Zero zkVM, and give a sense of why it might be plausible that code executed in the zkVM could be proven to parties who don't trust the prover.
 
 By reading this post, you should learn, at a high level:
 * How RISC Zero can be used to convince someone that code has executed on the zkVM
 * How we make programs and variables available to the zkVM guest
 * What zkVM guest programs can do to publicly share computation results
-* How this code example can be adapted to send to a real recipient
+* What information the prover would need to transmit to convince a real recipient
 
-# A program to multiply two numbers in the zkVM
+This post will not cover:
+* A detailed cryptographic analysis of the RISC Zero zkVM (see our [proof system explainers and reference materials](../explainers))
+* How to write code using the RISC Zero zkVM (see the [Hello Multiply tutorial](hello_multiply.md), or [our examples generally](..))
 
-In the Rust starter program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The RISC Zero zkVM provides a cryptographically strong argument that we performed the computation, which is witnessed by a verifiable "receipt." By sharing the receipt, we can convince a skeptical third party that we ran the computation faithfully and that the output is honest.
+# Overview: A program to multiply two numbers in the zkVM
+
+In the Hello Multiply program, we demonstrate how to multiply two numbers and share their product without revealing what the two factors are. The RISC Zero zkVM provides a cryptographically strong argument that we performed the computation, which is witnessed by a verifiable "receipt." By sharing the receipt, we can convince a skeptical third party that we ran the computation faithfully and that the output is honest.
 
 # Differentiating host and guest code
 
-The host driver program runs the guest zkVM. Most code written for the guest zkVM lives in [`methods/guest/src/bin/multiply.rs`](https://github.com/risc0/risc0-rust-starter/blob/main/methods/guest/src/bin/multiply.rs). The main function for our host program code  lives in [`starter/src/main.rs`](https://github.com/risc0/risc0-rust-starter/blob/main/starter/src/main.rs).
+The host driver program runs the guest zkVM. Most code written for the guest zkVM lives in [`methods/guest/src/bin/multiply.rs`](https://github.com/risc0/risc0-rust-examples/blob/main/factors/methods/guest/src/bin/multiply.rs). The main function for our host program code  lives in [`factors/src/main.rs`](https://github.com/risc0/risc0-rust-examples/blob/main/factors/factors/src/main.rs).
 
 When the host code executes, it creates a prover instance that is responsible for all guest zkVM interactions:
 
@@ -25,7 +31,7 @@ When the host code executes, it creates a prover instance that is responsible fo
     let mut prover = Prover::new(&std::fs::read(MULTIPLY_PATH).unwrap(), MULTIPLY_ID).unwrap();
 ```
 
- The prover runs an ELF binary of the zkVM guest code. After the guest code has executed, the prover returns a [receipt](https://www.risczero.com/docs/explainers/proof-system/what_is_a_receipt). In our example, these are accomplished with the following line in the `starter/src/main.rs` host source code:
+ The prover runs an ELF binary of the zkVM guest code. After the guest code has executed, the prover returns a [receipt](https://www.risczero.com/docs/explainers/proof-system/what_is_a_receipt). In our example, these are accomplished with the following line in the `factors/src/main.rs` host source code:
 
 ```
 let receipt = prover.run().unwrap();
@@ -66,7 +72,7 @@ style I fill:none,stroke:none
 ```
 -->
 
-For more details on this process, see our [zkVM Overview](https://www.risczero.com/docs/explainers/zkvm/zkvm_overview); for maximal detail, see our [proof system sequence diagram](https://www.risczero.com/docs/explainers/proof-system/proof-system-sequence-diagram). In the next section, we'll show how this process is managed from the perspective of the host program, the guest zkVM program, and the prover object that we call from the host. 
+For more details on this process, see our [zkVM Overview](https://www.risczero.com/docs/explainers/zkvm/); for maximal detail, see our [proof system sequence diagram](https://www.risczero.com/docs/explainers/proof-system/proof-system-sequence-diagram). In the next section, we'll show how this process is managed from the perspective of the host program, the guest zkVM program, and the prover object that we call from the host.
 
 # Interacting with the prover
 
@@ -127,10 +133,12 @@ If we send the receipt to someone else, then they can see we ran the expected pr
 
 # A note on practical use
 
-For brevity (and to stay agnostic about use cases), our starter example omits a few steps that would typically happen after the prover generates a receipt. 
+For brevity (and to stay agnostic about use cases), our Hello Multiply example omits a few steps that would typically happen after the prover generates a receipt.
 
 In our example, the receipt is verified from the `main.rs` host program. However, the value of the receipt is that it can convince another party we ran the `multiply.rs` program. In a real-world scenario, then, we would want to send the receipt to someone else, most likely by serializing it and passing it over a network.
 
 We would also want to give the source code for the guest program to the recipient. The recipient would generate the `method ID` of the zkVM program binary on their side and use this to check the receipt's method ID.
 
-In an upcoming article, we'll show you how the computational receipt is created and checked in greater detail as we walk through how RISC Zero projects can allow us to trust user-provided data. We'll look at a slightly (but not much) more involved program that allows a user to check their own password against a set of validity requirements (e.g., the inclusion of uppercase letters) and provide their own password hash. If you have any questions or are interested in talking about zkVM projects, come find us on [Twitter](https://twitter.com/risczero) and [Discord](https://discord.com/invite/risczero). We'd love to see what you build using the RISC Zero zkVM!
+If you would like to know more about receipts, we recommend our article [Understanding the Password Validity Checker](password_checker.md). We'll show you how the computational receipt is created and checked in greater detail as we walk through how RISC Zero projects can allow us to trust user-provided data. We'll look at a slightly (but not much) more involved program that allows a user to check their own password against a set of validity requirements (e.g., the inclusion of uppercase letters) and provide their own password hash.
+
+If you have any questions or are interested in talking about zkVM projects, come find us on [Twitter](https://twitter.com/risczero) and [Discord](https://discord.com/invite/risczero). We'd love to see what you build using the RISC Zero zkVM!
