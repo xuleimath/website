@@ -29,5 +29,5 @@ The polynomial associated with the array $(u_0,u_1,\ldots,u_{n-1})$ is the uniqu
 ## Suggested Reading and Videos
 This [DFT video](https://www.youtube.com/watch?v=nl9TZanwbBk) and [FFT video](https://www.youtube.com/watch?v=E8HeD-MUrjY) from UW professor Steve Brunton are brief and instructive. For visual intuition, we recommend Grant Sanderson's [3blue1brown video](https://www.youtube.com/watch?v=spUNpyF58BY) and [lecture](https://www.youtube.com/watch?v=g8RkArhtCc4). To translate from FFTs to NTTs, replace the complex root of unity with a finite field root of unity. 
 
-For a deeper look into the algorithm at both a software and hardware level, we recommend this [FFT video from Reducible](https://www.youtube.com/watch?v=h7apO7q16V0). And here's [Vitalik's take](https://vitalik.ca/general/2019/05/12/fft.html) on FFTs/NTTs. 
+For a deeper look into the algorithm at both a software and hardware level, we recommend this [FFT video from Reducible](https://www.youtube.com/watch?v=h7apO7q16V0). And here's [Vitalik's talk](https://vitalik.ca/general/2019/05/12/fft.html) on FFTs/NTTs. 
 
